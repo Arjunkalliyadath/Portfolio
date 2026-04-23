@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjun K • Data Scientist &amp; ML Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #00d4ff;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .section-header {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, #00d4ff, #0066ff);
+            border-radius: 3px;
+        }
+
+        .nav-active {
+            color: #00d4ff;
+            position: relative;
+        }
+        
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00d4ff;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            border-radius: 9999px;
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgb(0 212 255 / 0.15);
+        }
+
+        .metric {
+            transition: all 0.3s ease;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+        }
+
+        .accent-text {
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timeline-dot {
+            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2);
+        }
+
+        .premium-shadow {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3),
+                        0 4px 6px -4px rgb(0 0 0 / 0.3);
+        }
+        
+        .subtle-grid {
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .nav-scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0e27] text-white overflow-x-hidden">
+    <!-- NAV -->
+    <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#00d4ff] to-[#0066ff] flex items-center justify-center">
+                        <span class="font-display text-xl font-bold tracking-tighter">AK</span>
+                    </div>
+                    <div>
+                        <span class="font-display text-2xl font-semibold tracking-tight">Arjun K</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+                    <a href="#about" class="hover:text-[#00d4ff] transition-colors">About</a>
+                    <a href="#skills" class="hover:text-[#00d4ff] transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-[#00d4ff] transition-colors">Projects</a>
+                    <a href="#experience" class="hover:text-[#00d4ff] transition-colors">Experience</a>
+                    <a href="#certs" class="hover:text-[#00d4ff] transition-colors">Certifications</a>
+                </div>
+                
+                <div class="flex items-center gap-x-4">
+                    <a href="#contact" 
+                       class="px-6 py-2.5 rounded-2xl border border-white/20 hover:border-[#00d4ff] hover:text-[#00d4ff] text-sm font-semibold transition-all flex items-center gap-x-2">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Contact</span>
+                    </a>
+                    <button onclick="downloadResume()"
+                            class="px-6 py-2.5 bg-white text-[#0a0e27] hover:bg-[#00d4ff] hover:text-white rounded-2xl text-sm font-semibold flex items-center gap-x-2 transition-all">
+                        <i class="fas fa-download"></i>
+                        <span>Resume</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="min-h-[100dvh] flex items-center pt-16 relative subtle-grid">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="md:col-span-7 space-y-8">
+                <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="font-medium">Open to Data Scientist / ML Engineer roles</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <h1 class="font-display text-7xl md:text-[92px] leading-[0.92] tracking-tighter font-semibold">
+                        Turning<br>
+                        <span class="accent-text">data into</span><br>
+                        decisions.
+                    </h1>
+                    
+                    <p class="max-w-lg text-xl text-white/70">
+                        B.Tech CSE • IEEE Published Researcher • Ex-Keltron System Admin<br>
+                        <span class="font-medium text-white">4 production-grade ML systems shipped.</span>
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" 
+                       class="group px-8 py-4 bg-[#00d4ff] hover:bg-white text-[#0a0e27] font-semibold rounded-3xl flex items-center gap-x-3 text-lg transition-all active:scale-[0.985]">
+                        <span>Explore Projects</span>
+                        <i class="fas fa-arrow-right group-active:translate-x-1 transition"></i>
+                    </a>
+                    
+                    <a href="#contact" 
+                       class="px-8 py-4 border border-white/30 hover:border-white/60 rounded-3xl flex items-center gap-x-3 text-lg font-medium transition-all">
+                        <span>Let's Talk</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-x-8 pt-6 text-sm">
+                    <div class="flex items-center gap-x-2">
+                        <div class="flex -space-x-2">
+                            <div class="w-7 h-7 rounded-full border-2 border-[#0a0e27] bg-zinc-700 overflow-hidden"><img src="https://i.pravatar.cc/28?img=68" class="w-full h-full object-cover"></div>
+                            <div class="w-7 h-7 rounded-full border-2 border-[#0a0e27] bg-zinc-700 overflow-hidden"><img src="https://i.pravatar.cc/28?img=47" class="w-full h-full object-cover"></div>
+                        </div>
+                        <span class="text-white/60">Featured in IEEE ICCCI 2023</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Professional Photo -->
+            <div class="md:col-span-5 relative flex justify-center md:justify-end">
+                <div class="relative w-[280px] h-[360px] md:w-[320px] md:h-[400px]">
+                    <!-- Photo with premium frame -->
+                    <div class="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl premium-shadow">
+                        <img src="professional-photo.png" 
+                             alt="Arjun K - Professional Portrait" 
+                             class="w-full h-full object-cover object-top grayscale-[0.15] hover:grayscale-0 transition-all duration-700 hover:scale-105">
+                    </div>
+                    
+                    <!-- Subtle border glow -->
+                    <div class="absolute inset-0 rounded-[2rem] border border-white/15 -z-10"></div>
+                    
+                    <!-- Accent glow -->
+                    <div class="absolute -inset-3 bg-gradient-to-br from-[#00d4ff]/15 via-[#0066ff]/10 to-transparent rounded-[2.5rem] -z-20 blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:block">
+            <div class="flex flex-col items-center gap-y-1 text-xs tracking-[3px] text-white/50">
+                <span>SCROLL TO BEGIN</span>
+                <i class="fas fa-chevron-down animate-bounce"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-24 border-t border-white/10">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-end gap-x-4 mb-8">
+                <h2 class="section-header text-5xl font-display font-semibold tracking-tight">The story behind the work</h2>
+            </div>
+            
+            <div class="prose prose-invert max-w-none text-[17px] leading-relaxed text-white/80">
+                <p class="mb-6">
+                    I built my foundation in both systems and data science through a B.Tech in Computer Science & Engineering with IBM specialization in Data Science, complemented by the IBM Data Science Graduate certification and ICT Academy's 375-hour Data Science & Analytics program.
+                </p>
+                <p class="mb-6">
+                    While mastering data science theory, I gained real-world systems experience as a Graduate Apprentice System Administrator at Keltron, managing a state-wide AI traffic enforcement system with 100+ cameras and 99%+ uptime. This dual perspective taught me something crucial: <span class="font-semibold text-white">how data science concepts translate into reliable, production-grade systems that handle real operational pressure.</span>
+                </p>
+                <p class="mb-8">
+                    I channeled this unique blend into building four production-grade ML projects while working full-time. One of them (Sign Language to Text) earned IEEE ICCCI 2023 publication and Best Paper at my university's Project Expo, proving my ability to bridge academic rigor with practical implementation.
+                </p>
+            </div>
+            
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass border border-white/10 rounded-3xl p-7">
+                    <div class="text-[#00d4ff] text-4xl font-semibold mb-1">93%</div>
+                    <div class="text-sm font-medium">Model Accuracy (Car Price)</div>
+                    <div class="text-xs text-white/50 mt-4">Random Forest on real Indian market data</div>
+                </div>
+                <div class="glass border border-white/10 rounded-3xl p-7">
+                    <div class="text-[#00d4ff] text-4xl font-semibold mb-1">31K+</div>
+                    <div class="text-sm font-medium">Images trained for Sign Language</div>
+                    <div class="text-xs text-white/50 mt-4">IEEE published • Best Paper Award</div>
+                </div>
+                <div class="glass border border-white/10 rounded-3xl p-7">
+                    <div class="text-[#00d4ff] text-4xl font-semibold mb-1">99%+</div>
+                    <div class="text-sm font-medium">System Uptime at Keltron</div>
+                    <div class="text-xs text-white/50 mt-4">24/7 government AI surveillance</div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-sm text-white/60 flex items-center gap-x-2">
+                <i class="fas fa-lightbulb"></i>
+                <span>Discipline &gt; Motivation. I ship. I measure. I improve.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="max-w-screen-2xl mx-auto px-8 py-20 bg-[#050a15]">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12">
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-[#00d4ff]">EXPERTISE</div>
+                <h2 class="text-5xl font-display font-semibold tracking-tight mt-1">What I bring to the table</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Data Science -->
+                <div class="glass border border-white/10 rounded-3xl p-8">
+                    <div class="flex items-center gap-x-4 mb-8">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#00d4ff] to-[#0066ff] flex items-center justify-center">
+                            <i class="fas fa-brain text-2xl"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-xl">Data Science &amp; Machine Learning</div>
+                            <div class="text-xs text-white/50">Core competency</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>Python (Pandas, NumPy, Scikit-learn)</span>
+                                <span class="font-mono text-[#00d4ff]">95</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[95%]" style="width: 95%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>TensorFlow • CNNs • MediaPipe</span>
+                                <span class="font-mono text-[#00d4ff]">88</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[88%]" style="width: 88%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>OCR (PaddleOCR + EasyOCR + LayoutLM)</span>
+                                <span class="font-mono text-[#00d4ff]">85</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[85%]" style="width: 85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>Feature Engineering • EDA • Model Evaluation</span>
+                                <span class="font-mono text-[#00d4ff]">90</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[90%]" style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web & Backend -->
+                <div class="glass border border-white/10 rounded-3xl p-8">
+                    <div class="flex items-center gap-x-4 mb-8">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
+                            <i class="fas fa-server text-2xl"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-xl">Full-Stack &amp; MLOps</div>
+                            <div class="text-xs text-white/50">Production deployment ready</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>FastAPI • Django • Flask</span>
+                                <span class="font-mono text-emerald-400">92</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[92%]" style="width: 92%; background: linear-gradient(90deg, #10b981, #14b8a6);"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>React (Vite) • Responsive UI</span>
+                                <span class="font-mono text-emerald-400">85</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[85%]" style="width: 85%; background: linear-gradient(90deg, #10b981, #14b8a6);"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>Render • Gunicorn • Docker basics</span>
+                                <span class="font-mono text-emerald-400">80</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[80%]" style="width: 80%; background: linear-gradient(90deg, #10b981, #14b8a6);"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1.5">
+                                <span>Git • YAML • CI/CD fundamentals</span>
+                                <span class="font-mono text-emerald-400">88</span>
+                            </div>
+                            <div class="h-1.5 bg-white/10 rounded-full overflow-hidden"><div class="skill-bar w-[88%]" style="width: 88%; background: linear-gradient(90deg, #10b981, #14b8a6);"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Tools & IT -->
+                <div class="glass border border-white/10 rounded-3xl p-8 md:col-span-2">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-white/50 mb-3">DATA VISUALIZATION</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Tableau</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Power BI</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Matplotlib</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Seaborn</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-white/50 mb-3">INFRASTRUCTURE &amp; SYSTEMS</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Server Administration</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Networking</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">AI Camera Monitoring</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-white/5 border border-white/10">Linux Basics</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-white/50 mb-3">CURRENTLY SHARPENING</div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-gradient-to-r from-amber-400/10 to-orange-400/10 border border-amber-400/30 text-amber-300">MLOps (Docker + Kubernetes)</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-gradient-to-r from-amber-400/10 to-orange-400/10 border border-amber-400/30 text-amber-300">LLM Fine-tuning</span>
+                                <span class="px-4 py-1.5 text-xs rounded-2xl bg-gradient-to-r from-amber-400/10 to-orange-400/10 border border-amber-400/30 text-amber-300">Apache Kafka</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="flex items-end justify-between mb-10">
+            <div>
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-[#00d4ff]">SELECTED WORK</div>
+                <h2 class="text-5xl font-display font-semibold tracking-tight">Projects that actually ship</h2>
+            </div>
+            <a href="https://github.com/Arjunkalliyadath" target="_blank" 
+               class="hidden md:flex items-center gap-x-2 text-sm hover:text-[#00d4ff] transition-colors group">
+                <span>View all on GitHub</span> 
+                <i class="fas fa-external-link-alt group-hover:translate-x-0.5 transition"></i>
+            </a>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- GST2A Project -->
+            <div class="project-card glass border border-white/10 rounded-3xl overflow-hidden group">
+                <div class="h-2 bg-gradient-to-r from-[#00d4ff] via-[#0066ff] to-[#00d4ff]"></div>
+                <div class="p-8">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="flex items-center gap-x-3">
+                                <span class="px-3 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded-xl">FLAGSHIP</span>
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/5 rounded-xl">2026</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-semibold mt-3 tracking-tight">GST2A Intelligent Document Converter</h3>
+                            <p class="text-white/70 mt-2">AI-powered extraction of structured GST data from scanned forms</p>
+                        </div>
+                        <i class="fas fa-file-invoice text-4xl text-white/10 group-hover:text-[#00d4ff]/40 transition"></i>
+                    </div>
+                    
+                    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-semibold text-[#00d4ff]">16+</div>
+                            <div class="text-[10px] text-white/50">Records per doc</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-semibold text-[#00d4ff]">4</div>
+                            <div class="text-[10px] text-white/50">OCR engines</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-semibold text-[#00d4ff]">155s</div>
+                            <div class="text-[10px] text-white/50">Avg processing</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <div class="text-xs uppercase tracking-widest text-white/50 mb-2">STACK</div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">FastAPI</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">React</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">EasyOCR</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">PaddleOCR</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">LayoutLM</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">LLM Validation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-xs text-white/60 leading-relaxed">
+                        Built a complete document intelligence pipeline: image enhancement → multi-engine OCR → structured extraction with LayoutLM → LLM-based validation → Excel generation. Handles real-world GST2A forms with high accuracy.
+                    </div>
+                    
+                    <div class="mt-8 flex items-center gap-x-3">
+                        <a href="#" class="text-xs flex-1 text-center py-3 border border-white/20 hover:border-[#00d4ff] hover:text-[#00d4ff] rounded-2xl transition">View Demo</a>
+                        <a href="https://github.com/Arjunkalliyadath" target="_blank" class="text-xs flex-1 text-center py-3 bg-white/5 hover:bg-white/10 rounded-2xl transition">GitHub Repo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Car Price -->
+            <div class="project-card glass border border-white/10 rounded-3xl overflow-hidden group">
+                <div class="h-2 bg-gradient-to-r from-emerald-400 to-teal-400"></div>
+                <div class="p-8">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="flex items-center gap-x-3">
+                                <span class="px-3 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-400 rounded-xl">LIVE</span>
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/5 rounded-xl">2026</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-semibold mt-3 tracking-tight">Car Price Prediction Web App</h3>
+                            <p class="text-white/70 mt-2">ML model to estimate used car resale value in the Indian market</p>
+                        </div>
+                        <i class="fas fa-car text-4xl text-white/10 group-hover:text-emerald-400/40 transition"></i>
+                    </div>
+                    
+                    <div class="mt-8 flex items-baseline gap-x-2">
+                        <div class="text-[72px] font-semibold tabular-nums tracking-tighter text-emerald-400">0.93</div>
+                        <div>
+                            <div class="text-emerald-400 text-sm font-semibold">R² SCORE</div>
+                            <div class="text-xs text-white/50">on test set</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-xs text-white/60 mt-1">MAE: ₹0.45 Lakhs • Production deployed on Render</div>
+                    
+                    <div class="mt-8">
+                        <div class="text-xs uppercase tracking-widest text-white/50 mb-2">STACK</div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Flask</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Scikit-learn</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Random Forest</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Pandas</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Gunicorn</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-xs text-white/60 leading-relaxed">
+                        End-to-end pipeline: data cleaning, feature engineering (car age derivation), one-hot encoding, StandardScaler, hyperparameter-tuned Random Forest. Achieved strong generalization on real market data.
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="https://car-price-prediction-1-wjcu.onrender.com" target="_blank" 
+                           class="inline-flex items-center gap-x-2 text-sm px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl transition font-medium">
+                            <span>Try Live Demo</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sign Language -->
+            <div class="project-card glass border border-white/10 rounded-3xl overflow-hidden group">
+                <div class="h-2 bg-gradient-to-r from-violet-400 to-purple-500"></div>
+                <div class="p-8">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="flex items-center gap-x-3">
+                                <span class="px-3 py-1 text-xs font-semibold bg-violet-500/10 text-violet-400 rounded-xl">IEEE PUBLISHED</span>
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/5 rounded-xl">2023</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-semibold mt-3 tracking-tight">Sign Language to Text Conversion</h3>
+                            <p class="text-white/70 mt-2">Real-time gesture recognition system for speech &amp; hearing impaired</p>
+                        </div>
+                        <i class="fas fa-hands text-4xl text-white/10 group-hover:text-violet-400/40 transition"></i>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <div class="text-xs uppercase tracking-widest text-white/50 mb-2">KEY ACHIEVEMENTS</div>
+                        <div class="flex flex-wrap gap-2">
+                            <div class="px-4 py-2 bg-white/5 rounded-2xl text-xs">31,000+ images trained</div>
+                            <div class="px-4 py-2 bg-white/5 rounded-2xl text-xs">Best Paper Award @ KARE</div>
+                            <div class="px-4 py-2 bg-white/5 rounded-2xl text-xs">IEEE ICCCI 2023</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <div class="text-xs uppercase tracking-widest text-white/50 mb-2">STACK</div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">TensorFlow</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">CNN</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">MediaPipe</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">OpenCV</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-xs text-white/60">
+                        Built a real-time system using hand landmark detection + custom CNN. Trained on large custom dataset. Won Best Paper at university expo and presented at international IEEE conference.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Netflix Tudum -->
+            <div class="project-card glass border border-white/10 rounded-3xl overflow-hidden group">
+                <div class="h-2 bg-gradient-to-r from-red-500 to-rose-500"></div>
+                <div class="p-8">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="flex items-center gap-x-3">
+                                <span class="px-3 py-1 text-xs font-semibold bg-red-500/10 text-red-400 rounded-xl">LIVE</span>
+                                <span class="px-3 py-1 text-xs font-semibold bg-white/5 rounded-xl">2026</span>
+                            </div>
+                            <h3 class="font-display text-3xl font-semibold mt-3 tracking-tight">Netflix Tudum Web App</h3>
+                            <p class="text-white/70 mt-2">Full-stack streaming platform clone with authentication</p>
+                        </div>
+                        <i class="fas fa-play text-4xl text-white/10 group-hover:text-red-400/40 transition"></i>
+                    </div>
+                    
+                    <div class="mt-8 text-xs text-white/60 leading-relaxed">
+                        Complete production deployment exercise: Django backend with user authentication, responsive Bootstrap frontend, SQLite database, and clean deployment pipeline using Render + Gunicorn. Demonstrates end-to-end web development skills.
+                    </div>
+                    
+                    <div class="mt-8">
+                        <div class="text-xs uppercase tracking-widest text-white/50 mb-2">STACK</div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Django</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Bootstrap 5</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">SQLite</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Gunicorn</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-2xl">Render</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="https://netflix-tudum.onrender.com" target="_blank" 
+                           class="inline-flex items-center gap-x-2 text-sm px-6 py-3 border border-white/20 hover:border-red-400 hover:text-red-400 rounded-2xl transition font-medium">
+                            <span>Visit Live Site</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <p class="text-xs text-white/50">All projects are fully functional, version-controlled, and many are deployed live. Code quality and documentation are production-grade.</p>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10 bg-[#050a15]">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-10">
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-[#00d4ff]">WHERE I LEARNED TO SHIP</div>
+                <h2 class="text-5xl font-display font-semibold tracking-tight">Professional Experience</h2>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Keltron -->
+                <div class="glass border-l-4 border-[#00d4ff] rounded-r-3xl p-8 md:p-10">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 mb-6">
+                        <div>
+                            <div class="font-semibold text-2xl">Graduate Apprentice — System Administrator</div>
+                            <div class="text-[#00d4ff]">Keltron (Kerala State Electronics Development Corp.) • Kozhikode</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-mono text-white/60">JUN 2024 — JUN 2025</div>
+                            <div class="text-xs text-emerald-400">1 year • Full-time</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-x-10 text-[15px]">
+                        <div class="space-y-3 text-white/80">
+                            <div class="flex gap-x-3">
+                                <i class="fas fa-check text-[#00d4ff] mt-1 flex-shrink-0"></i>
+                                <span>Managed 24/7 infrastructure for Safe Kerala AI Camera Project — 100+ cameras across district enforcement centers</span>
+                            </div>
+                            <div class="flex gap-x-3">
+                                <i class="fas fa-check text-[#00d4ff] mt-1 flex-shrink-0"></i>
+                                <span>Maintained 99%+ uptime through proactive monitoring, diagnostics, and rapid incident response</span>
+                            </div>
+                            <div class="flex gap-x-3">
+                                <i class="fas fa-check text-[#00d4ff] mt-1 flex-shrink-0"></i>
+                                <span>Built operational reporting pipelines used for billing, certification, and government compliance</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-white/80 mt-4 md:mt-0">
+                            <div class="flex gap-x-3">
+                                <i class="fas fa-check text-[#00d4ff] mt-1 flex-shrink-0"></i>
+                                <span>Coordinated with state central control room and multiple vendors for maintenance &amp; repairs</span>
+                            </div>
+                            <div class="flex gap-x-3">
+                                <i class="fas fa-check text-[#00d4ff] mt-1 flex-shrink-0"></i>
+                                <span>Delivered Tier-1 &amp; Tier-2 technical support across email, phone, and on-site</span>
+                            </div>
+                            <div class="flex gap-x-3">
+                                <i class="fas fa-check text-[#00d4ff] mt-1 flex-shrink-0"></i>
+                                <span>Gained deep understanding of real-world data pipelines, reliability engineering, and stakeholder management</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-white/10 text-xs text-white/50">
+                        This role taught me how production systems actually behave under pressure — lessons I now apply directly to ML model deployment and monitoring.
+                    </div>
+                </div>
+                
+                <!-- Intern -->
+                <div class="glass border-l-4 border-white/30 rounded-r-3xl p-8">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-2 mb-4">
+                        <div>
+                            <div class="font-semibold">WordPress Developer Intern</div>
+                            <div class="text-white/70">Stalza Technologies (Remote)</div>
+                        </div>
+                        <div class="text-xs text-white/60">JUN 2022 • 1 month</div>
+                    </div>
+                    <div class="text-sm text-white/70">Built and optimized a business website with custom plugins and performance enhancements. First real exposure to client delivery and clean code practices.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certs" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-10">
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-[#00d4ff]">CREDENTIALS</div>
+                <h2 class="text-5xl font-display font-semibold tracking-tight">Proof of continuous learning</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Data Science focused first -->
+                <div class="glass border border-white/10 rounded-3xl p-7 flex gap-x-5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Certified Specialist in Data Science &amp; Analytics</div>
+                        <div class="text-xs text-white/60 mt-0.5">ICT Academy of Kerala • 375 hours • Mar 2026</div>
+                        <div class="text-[10px] text-emerald-400 mt-3">Formative: 63/70 • Summative: 19/30</div>
+                    </div>
+                </div>
+                
+                <div class="glass border border-white/10 rounded-3xl p-7 flex gap-x-5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Data Science Graduate</div>
+                        <div class="text-xs text-white/60 mt-0.5">IBM • Apr 2023</div>
+                        <div class="mt-3"><span class="text-xs px-2.5 py-px bg-white/10 rounded">Verified on Credly</span></div>
+                    </div>
+                </div>
+                
+                <div class="glass border border-white/10 rounded-3xl p-7 flex gap-x-5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-500 flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Tableau 2024.1: Essential Training</div>
+                        <div class="text-xs text-white/60 mt-0.5">LinkedIn Learning • Dec 2025 • 10.8 CPE Credits</div>
+                        <div class="text-[10px] text-white/50 mt-2">NASBA Registered • Skills: Tableau, Data Analysis</div>
+                    </div>
+                </div>
+                
+                <div class="glass border border-white/10 rounded-3xl p-7 flex gap-x-5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-500 to-rose-500 flex-shrink-0 flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-semibold">Python for Data Science</div>
+                        <div class="text-xs text-white/60 mt-0.5">NPTEL (IIT Madras) • Jul–Aug 2025 • 67%</div>
+                        <div class="text-[10px] text-white/50 mt-2">Elite Certificate • 16,331 candidates certified</div>
+                    </div>
+                </div>
+                
+                <div class="glass border border-white/10 rounded-3xl p-7 flex gap-x-5 md:col-span-2">
+                    <div class="flex-1">
+                        <div class="font-semibold">IEEE ICCCI 2023 — Technical Paper Presentation</div>
+                        <div class="text-sm text-white/70 mt-1">"Analyses of Machine Learning Techniques for Sign Language to Text Conversion for Speech Impaired"</div>
+                        <div class="text-xs text-white/50 mt-3">23–25 Jan 2023 • Sri Shakthi Institute of Engineering &amp; Technology • Best Paper Award @ KARE Project Expo 2023</div>
+                    </div>
+                    <div>
+                        <div class="px-4 py-1.5 text-xs rounded-2xl border border-white/20 text-center">PUBLISHED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRENTLY LEARNING -->
+    <div class="max-w-screen-2xl mx-auto px-8 pb-16">
+        <div class="max-w-4xl mx-auto glass border border-white/10 rounded-3xl p-9 text-center">
+            <div class="uppercase text-xs tracking-[2px] text-white/50 mb-3">CONTINUOUS IMPROVEMENT</div>
+            <div class="text-2xl font-medium">Currently sharpening</div>
+            <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+                <span class="px-5 py-2 bg-white/5 rounded-3xl">MLOps &amp; Model Monitoring</span>
+                <span class="px-5 py-2 bg-white/5 rounded-3xl">LLM Fine-tuning &amp; RAG</span>
+                <span class="px-5 py-2 bg-white/5 rounded-3xl">Apache Kafka Streaming</span>
+                <span class="px-5 py-2 bg-white/5 rounded-3xl">Kubernetes &amp; Docker</span>
+                <span class="px-5 py-2 bg-white/5 rounded-3xl">Advanced Computer Vision</span>
+            </div>
+            <p class="text-xs text-white/50 mt-6">I treat learning like a production system — measurable, versioned, and deployed daily.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-20 border-t border-white/10">
+        <div class="max-w-xl mx-auto text-center">
+            <div class="text-[#00d4ff] text-sm font-semibold tracking-widest">NEXT STEP</div>
+            <h2 class="text-6xl font-display font-semibold tracking-tighter mt-3">Let's build something<br>that matters.</h2>
+            
+            <div class="mt-10 space-y-4 text-lg">
+                <a href="mailto:arjunkalliyadath2001@gmail.com" 
+                   class="block px-8 py-4 bg-white text-[#0a0e27] hover:bg-[#00d4ff] hover:text-white rounded-3xl font-semibold transition flex items-center justify-center gap-x-3">
+                    <i class="fas fa-envelope"></i>
+                    <span>arjunkalliyadath2001@gmail.com</span>
+                </a>
+                
+                <div class="flex justify-center gap-x-4">
+                    <a href="https://www.linkedin.com/in/arjun-kalliyadath/" target="_blank" 
+                       class="flex-1 max-w-[180px] px-6 py-4 border border-white/20 hover:border-[#00d4ff] rounded-3xl flex items-center justify-center gap-x-3 text-sm font-medium transition">
+                        <i class="fab fa-linkedin text-lg"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Arjunkalliyadath" target="_blank" 
+                       class="flex-1 max-w-[180px] px-6 py-4 border border-white/20 hover:border-[#00d4ff] rounded-3xl flex items-center justify-center gap-x-3 text-sm font-medium transition">
+                        <i class="fab fa-github text-lg"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-xs text-white/40">
+                Based in Kozhikode, Kerala • Open to remote &amp; relocation
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-8 text-center text-xs text-white/40">
+        © 2026 Arjun K. Built with discipline, not motivation. All projects are real.
+    </footer>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#00d4ff');
+        }
+        
+        // Navbar scroll effect
+        function initNavbar() {
+            const nav = document.getElementById('nav');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.scrollY;
+                
+                if (currentScroll > 100) {
+                    nav.classList.add('nav-scrolled', 'shadow-xl');
+                } else {
+                    nav.classList.remove('nav-scrolled', 'shadow-xl');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+        
+        // Skill bar animation on scroll
+        function animateSkills() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.skill-bar');
+                        bars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0%';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 200);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            document.querySelectorAll('#skills .glass').forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Smooth scroll for nav links
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - navHeight;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Resume download simulation
+        function downloadResume() {
+            const btns = document.querySelectorAll('button');
+            btns.forEach(btn => btn.style.pointerEvents = 'none');
+            
+            const originalText = event.currentTarget ? event.currentTarget.innerHTML : '';
+            
+            // Create a temporary link to one of the resume PDFs
+            const link = document.createElement('a');
+            link.href = '/home/workdir/attachments/IT Resume.pdf';
+            link.download = 'Arjun_K_Data_Science_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show toast
+            showToast("Downloading resume...");
+            
+            setTimeout(() => {
+                btns.forEach(btn => btn.style.pointerEvents = 'auto');
+            }, 800);
+        }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-[#0a0e27] border border-[#00d4ff] text-[#00d4ff] rounded-2xl shadow-2xl flex items-center gap-x-3 text-sm z-[100]`;
+            toast.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 2200);
+        }
+        
+        // Keyboard support hint
+        function initKeyboardHint() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '?' && document.activeElement.tagName === 'BODY') {
+                    e.preventDefault();
+                    const projects = document.getElementById('projects');
+                    projects.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+            
+            // Add subtle hint in console
+            console.log('%c[Portfolio] Press "?" to jump to projects section', 'color:#64748b');
+        }
+        
+        // Initialize everything
+        function init() {
+            initializeTailwind();
+            initNavbar();
+            animateSkills();
+            initSmoothScroll();
+            initKeyboardHint();
+            
+            // Easter egg: Konami code for fun
+            let konami = [];
+            const secret = [38,38,40,40,37,39,37,39,66,65];
+            document.addEventListener('keydown', function(e) {
+                konami.push(e.keyCode);
+                if (konami.length > 10) konami.shift();
+                if (JSON.stringify(konami) === JSON.stringify(secret)) {
+                    document.body.style.transition = 'filter 0.6s';
+                    document.body.style.filter = 'hue-rotate(180deg)';
+                    setTimeout(() => {
+                        document.body.style.filter = '';
+                    }, 1400);
+                    konami = [];
+                }
+            });
+            
+            // Performance: lazy load images if needed
+            console.log('%c[Arjun K Portfolio] Premium portfolio initialized successfully. All systems nominal.', 'color:#64748b; font-size:9px');
+        }
+        
+        window.onload = init;
+        
+        // Expose download function globally
+        window.downloadResume = downloadResume;
+    </script>
+</body>
+</html>
